@@ -1,7 +1,26 @@
 import React, { useEffect } from 'react';
-import { Box, Container, Typography, Paper, Grid, Button, styled } from '@mui/material';
+
+
+
+
+
+
+
+
+import { 
+  Box, 
+  Container, 
+  Typography, 
+  Paper, 
+  Grid, 
+  Button, 
+  styled 
+} from '@mui/material';
+import { motion } from 'framer-motion';
+import { useImagePreloader } from '../hooks/useImagePreloader';
+import PageTransition from '../components/PageTransition';
 import KawaiiGallery from '../components/KawaiiGallery';
-import '../assets/kawaii-global.css';
+import LazyImage from '../components/LazyImage';
 
 // Stile kawaii/cartoonesco personalizzato
 const ProfileContainer = styled(Container)(({ theme }) => ({
@@ -28,35 +47,6 @@ const ProfileContainer = styled(Container)(({ theme }) => ({
   }
 }));
 
-const ProfileHeader = styled(Box)(({ theme }) => ({
-  textAlign: 'center',
-  marginBottom: theme.spacing(4),
-  '& h1': {
-    fontFamily: '"Poppins", "Quicksand", sans-serif',
-    color: '#E6196E',
-    textShadow: '2px 2px 0 #FFC0CB, 4px 4px 0 rgba(0,0,0,0.1)',
-    marginBottom: theme.spacing(1),
-  },
-  '& h5': {
-    fontFamily: '"Poppins", "Quicksand", sans-serif',
-    color: '#00B575',
-  }
-}));
-
-const InfoCard = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  borderRadius: '16px',
-  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-  border: '3px solid #FFD1DC',
-  boxShadow: '0 8px 16px rgba(230, 25, 110, 0.1)',
-  height: '100%',
-  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-  '&:hover': {
-    transform: 'translateY(-5px)',
-    boxShadow: '0 12px 20px rgba(230, 25, 110, 0.2)',
-  }
-}));
-
 const SocialButton = styled(Button)(({ theme }) => ({
   borderRadius: '30px',
   margin: theme.spacing(1),
@@ -75,87 +65,96 @@ const SocialButton = styled(Button)(({ theme }) => ({
   }
 }));
 
-const CommissionCard = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  borderRadius: '16px',
-  backgroundColor: '#FFF8FA',
-  border: '3px solid #FFD1DC',
-  boxShadow: '0 8px 16px rgba(230, 25, 110, 0.1)',
-  marginTop: theme.spacing(4),
-  position: 'relative',
-}));
+// Array di immagini da precaricare
+const IMAGE_PRELOAD_LIST = [
+  'https://i.ibb.co/PssMw2w/home-4.jpg',
+  'https://i.ibb.co/b5VB1Vz/saint-principino-001.jpg',
+  'https://i.ibb.co/FLRTqcH/saint-principino-002.jpg',
+  'https://i.ibb.co/xtPTTSb/saint-principino-003.jpg',
+  'https://i.ibb.co/HLKD9KK/saint-principino-004.jpg'
+];
 
 const ChiaraProfilePage: React.FC = () => {
-  // Effetto confetti per quando si carica la pagina
+  // Precarica le immagini
+  const { imagesPreloaded } = useImagePreloader(IMAGE_PRELOAD_LIST);
+
+  // Effetto confetti ottimizzato
   useEffect(() => {
     const createConfetti = () => {
       const confettiContainer = document.createElement('div');
       confettiContainer.className = 'confetti-container';
       document.body.appendChild(confettiContainer);
-      
-      const colors = ['#E6196E', '#FFB6C1', '#D1FFD1', '#D1DCFF', '#FFFFD1'];
-      
-      for (let i = 0; i < 100; i++) {
-        setTimeout(() => {
-          const confetti = document.createElement('div');
-          confetti.className = 'confetti';
-          confetti.style.left = Math.random() * 100 + '%';
-          confetti.style.width = Math.random() * 10 + 5 + 'px';
-          confetti.style.height = Math.random() * 10 + 5 + 'px';
-          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-          
-          confettiContainer.appendChild(confetti);
-          
-          // Rimuovi il confetto dopo l'animazione
-          setTimeout(() => {
-            confetti.remove();
-          }, 5000);
-        }, i * 50);
-      }
-      
-      // Rimuovi il contenitore dopo un po'
-      setTimeout(() => {
-        confettiContainer.remove();
-      }, 10000);
-    };
-    
-    createConfetti();
-  }, []);
 
-  // Sample artworks with fixed image URLs
+      const colors = ['#E6196E', '#FFB6C1', '#D1FFD1', '#D1DCFF', '#FFFFD1'];
+
+      const createConfettiPiece = () => {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        confettiContainer.appendChild(confetti);
+
+        // Rimuovi il confetto dopo l'animazione
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+
+
+      };
+      
+      // Crea confetti più velocemente e in modo più efficiente
+      const confettiInterval = setInterval(createConfettiPiece, 50);
+
+      // Ferma la creazione dopo un po'
+      setTimeout(() => {
+        clearInterval(confettiInterval);
+        setTimeout(() => {
+          confettiContainer.remove();
+        }, 5000);
+      }, 1000);
+    };
+
+    if (imagesPreloaded) {
+      createConfetti();
+    }
+  }, [imagesPreloaded]);
+
+  // Artwork samples con URL corretti
   const artworks = [
-      {
-        "id": 1,
-        "title": "Fairy Guardian of the Forest",
-        "image": "https://i.ibb.co/b5VB1Vz/saint-principino-001.jpg",
-        "description": "A magical fairy with emerald wings who protects the ancient forest.",
-        "category": "fairies"
-      },
-      {
-        "id": 2,
-        "title": "Moonlight Fairy",
-        "image": "https://i.ibb.co/FLRTqcH/saint-principino-002.jpg",
-        "description": "A celestial fairy who draws her power from the moon's glow.",
-        "category": "fairies"
-      },
-      {
-        "id": 3,
-        "title": "Twilight Fairy Princess",
-        "image": "https://i.ibb.co/xtPTTSb/saint-principino-003.jpg",
-        "description": "The princess of the twilight realm, where day meets night.",
-        "category": "fairies"
-      },
-      {
-        "id": 4,
-        "title": "Crystal Fairy",
-        "image": "https://i.ibb.co/HLKD9KK/saint-principino-004.jpg",
-        "description": "A fairy born from the purest crystal, her wings shimmer with rainbow light.",
-        "category": "fairies"
-      },
+    {
+      "id": 1,
+      "title": "Fairy Guardian of the Forest",
+      "image": "https://i.ibb.co/b5VB1Vz/saint-principino-001.jpg",
+      "description": "A magical fairy with emerald wings who protects the ancient forest.",
+      "category": "fairies"
+    },
+    {
+      "id": 2,
+      "title": "Moonlight Fairy",
+      "image": "https://i.ibb.co/FLRTqcH/saint-principino-002.jpg",
+      "description": "A celestial fairy who draws her power from the moon's glow.",
+      "category": "fairies"
+    },
+    {
+      "id": 3,
+      "title": "Crystal Fairy",
+      "image": "https://i.ibb.co/xtPTTSb/saint-principino-003.jpg",
+      "description": "A fairy born from the purest crystal, her wings shimmer with rainbow light.",
+      "category": "fairies"
+    },
+    {
+      "id": 4,
+      "title": "Spring Blossom Fairy",
+      "image": "https://i.ibb.co/HLKD9KK/saint-principino-004.jpg",
+      "description": "The harbinger of spring who brings flowers to bloom with her touch.",
+      "category": "fairies"
+    },
   ];
 
-  // Commission types
+  // Tipi di commissioni
   const commissionTypes = [
     {
       type: "Character Design",
@@ -180,179 +179,209 @@ const ChiaraProfilePage: React.FC = () => {
   ];
 
   return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        backgroundColor: '#FFF0F5',
-        backgroundImage: 'radial-gradient(#FFB6C1 1.5px, transparent 1.5px)',
-        backgroundSize: '20px 20px',
-        pt: 12, // Add padding top to account for the navbar
-        pb: 8
-      }}
-    >
-      <ProfileContainer maxWidth="lg" className="page-transition-enter">
-        <ProfileHeader>
-          <Typography variant="h1" className="kawaii-title kawaii-float">
-            Chiara's Art World
-          </Typography>
-          <Typography variant="h5">
-            Kawaii & Cute Illustrations ✨ Commission Open ✨
-          </Typography>
-          
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-            <SocialButton variant="contained" color="primary" className="kawaii-button">
-              Instagram
-            </SocialButton>
-            <SocialButton variant="contained" color="secondary" className="kawaii-button">
-              Twitter
-            </SocialButton>
-            <SocialButton 
-              variant="contained" 
-              sx={{ 
-                backgroundColor: '#7289DA',
-                '&:hover': {
-                  backgroundColor: '#5b73c7'
-                }
-              }}
-              className="kawaii-button"
-            >
-              Discord
-            </SocialButton>
-          </Box>
-        </ProfileHeader>
+    <PageTransition>
+      <Box
+        sx={{
+          minHeight: '100vh',
+          backgroundColor: '#FFF0F5',
+          backgroundImage: 'radial-gradient(#FFB6C1 1.5px, transparent 1.5px)',
+          backgroundSize: '20px 20px',
+          py: 8
+        }}
+      >
+        <ProfileContainer maxWidth="lg">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Box textAlign="center" mb={4}>
 
-        <Grid container spacing={4}>
-          {/* About Me Section */}
-          <Grid item xs={12} md={4}>
-            <InfoCard className="kawaii-card">
-              <Box sx={{ textAlign: 'center', mb: 3 }}>
-                <Box 
-                  component="img"
-                  src="https://i.ibb.co/PssMw2w/home-4.jpg"
-                  alt="Chiara's Profile"
-                  className="kawaii-float"
-                  sx={{
-                    width: 180,
-                    height: 180,
-                    borderRadius: '50%',
-                    border: '5px solid #FFD1DC',
-                    mb: 2,
-                    objectFit: 'cover'
-                  }}
-                />
-                <Typography variant="h5" sx={{ color: '#E6196E', fontFamily: '"Poppins", "Quicksand", sans-serif', fontWeight: 'bold' }}>
-                  Chiara
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
-                  Artist • Illustrator • Dreamer
-                </Typography>
-              </Box>
-              
-              <Typography variant="body1" paragraph>
-                Ciao! I'm Chiara, a digital artist specializing in cute, kawaii-style illustrations. 
-                I love creating adorable characters and bringing smiles with my colorful artworks!
+
+
+
+              <Typography 
+                variant="h1" 
+                sx={{ 
+                  color: '#E6196E', 
+                  fontFamily: '"Poppins", "Quicksand", sans-serif',
+                  mb: 2
+                }}
+              >
+                Chiara's Art World
               </Typography>
-              
-              <Typography variant="body1" paragraph>
-                My art style is influenced by Japanese kawaii culture, cartoon aesthetics, and my 
-                love for all things cute and pastel-colored.
+
+
+
+
+
+              <Typography 
+                variant="h5" 
+                sx={{ 
+                  color: '#00B575', 
+                  fontFamily: '"Poppins", "Quicksand", sans-serif' 
+                }}
+              >
+                Kawaii & Cute Illustrations ✨ Commission Open ✨
               </Typography>
-              
-              <Typography variant="body1">
-                When I'm not drawing, I enjoy watching anime, collecting plushies, and drinking way 
-                too much bubble tea! ✨🧋✨
-              </Typography>
-            </InfoCard>
-          </Grid>
-          
-          {/* Gallery Preview */}
-          <Grid item xs={12} md={8}>
-            <InfoCard>
-              <Typography variant="h5" sx={{ mb: 3, color: '#00B575', fontFamily: '"Poppins", "Quicksand", sans-serif', fontWeight: 'bold' }}>
-                My Art Gallery ✨
-              </Typography>
-              
-              <KawaiiGallery items={artworks} columns={2} spacing={2} />
-              
-              <Box sx={{ textAlign: 'center', mt: 3 }}>
+
+              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                <SocialButton variant="contained" color="primary">
+                  Instagram
+                </SocialButton>
+                <SocialButton variant="contained" color="secondary">
+                  Twitter
+                </SocialButton>
+
+
+
                 <SocialButton 
                   variant="contained" 
-                  color="primary"
-                  sx={{ px: 4 }}
-                  className="kawaii-pulse"
-                  href="/fairies"
+                  sx={{ 
+                    backgroundColor: '#7289DA',
+                    '&:hover': {
+                      backgroundColor: '#5b73c7'
+                    }
+                  }}
                 >
-                  View Fairy Collection
+                  Discord
                 </SocialButton>
               </Box>
-            </InfoCard>
-          </Grid>
-        </Grid>
-        
-        {/* Commissions Section */}
-        <CommissionCard>
-          <Typography variant="h5" sx={{ mb: 3, textAlign: 'center', color: '#E6196E', fontFamily: '"Poppins", "Quicksand", sans-serif', fontWeight: 'bold' }}>
-            Commission Information
-          </Typography>
-          
-          <Grid container spacing={3}>
-            {commissionTypes.map((commission, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Box 
-                  sx={{ 
-                    p: 2, 
-                    textAlign: 'center',
-                    backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                    borderRadius: '12px',
-                    border: '2px dashed #FFD1DC',
-                    height: '100%'
-                  }}
-                  className="kawaii-float"
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <Typography variant="h6" sx={{ color: '#E6196E', fontFamily: '"Poppins", "Quicksand", sans-serif' }}>
-                    {commission.type}
-                  </Typography>
-                  <Typography variant="h5" sx={{ color: '#00B575', my: 1, fontWeight: 'bold' }}>
-                    {commission.price}
-                  </Typography>
-                  <Typography variant="body2">
-                    {commission.description}
-                  </Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-          
-          <Box sx={{ mt: 4, p: 3, backgroundColor: '#FFF0F5', borderRadius: '12px', border: '2px solid #FFD1DC' }}>
-            <Typography variant="h6" sx={{ mb: 2, color: '#E6196E', fontFamily: '"Poppins", "Quicksand", sans-serif' }}>
-              Please Note:
-            </Typography>
-            <Typography variant="body1" component="div">
-              <ul>
-                <li>All commissions require a 50% deposit upfront</li>
-                <li>Turnaround time is usually 1-2 weeks depending on complexity</li>
-                <li>I reserve the right to decline any commission request</li>
-                <li>I'll provide sketches for approval before finalizing</li>
-                <li>Contact me via Discord for fastest response!</li>
-              </ul>
-            </Typography>
-            
-            <Box sx={{ textAlign: 'center', mt: 3 }}>
-              <SocialButton 
-                variant="contained" 
-                color="secondary"
-                sx={{ px: 4 }}
-                className="kawaii-pulse"
-                href="/contact"
-              >
-                Request Commission
-              </SocialButton>
             </Box>
-          </Box>
-        </CommissionCard>
-      </ProfileContainer>
-    </Box>
+
+            <Grid container spacing={4}>
+              {/* About Me Section */}
+              <Grid item xs={12} md={4}>
+
+
+
+
+
+
+                <Paper 
+                  elevation={3} 
+                  sx={{ 
+                    p: 3, 
+                    borderRadius: '20px', 
+                    backgroundColor: 'rgba(255,255,255,0.9)' 
+                  }}
+                >
+                  <Box sx={{ textAlign: 'center', mb: 3 }}>
+                    <LazyImage
+                      src="https://i.ibb.co/PssMw2w/home-4.jpg"
+                      alt="Chiara's Profile"
+
+                      style={{
+                        width: 180,
+                        height: 180,
+                        borderRadius: '50%',
+                        border: '5px solid #FFD1DC',
+
+                        marginBottom: 16,
+                        objectFit: 'cover'
+                      }}
+                    />
+
+
+
+
+
+
+                    <Typography 
+                      variant="h5" 
+                      sx={{ 
+                        color: '#E6196E', 
+                        fontFamily: '"Poppins", "Quicksand", sans-serif', 
+                        fontWeight: 'bold' 
+                      }}
+                    >
+                      Chiara
+                    </Typography>
+
+
+
+                    <Typography 
+                      variant="body2" 
+                      color="text.secondary" 
+                      sx={{ fontStyle: 'italic' }}
+                    >
+                      Artist • Illustrator • Dreamer
+                    </Typography>
+                  </Box>
+
+                  <Typography variant="body1" paragraph>
+                    Ciao! I'm Chiara, a digital artist specializing in cute, kawaii-style illustrations.
+                    I love creating adorable characters and bringing smiles with my colorful artworks!
+                  </Typography>
+
+                  <Typography variant="body1" paragraph>
+                    My art style is influenced by Japanese kawaii culture, cartoon aesthetics, and my
+                    love for all things cute and pastel-colored.
+                  </Typography>
+
+                  <Typography variant="body1">
+                    When I'm not drawing, I enjoy watching anime, collecting plushies, and drinking way
+                    too much bubble tea! ✨🧋✨
+                  </Typography>
+                </Paper>
+              </Grid>
+
+              {/* Gallery Preview */}
+              <Grid item xs={12} md={8}>
+
+
+
+
+
+
+                <Paper 
+                  elevation={3} 
+                  sx={{ 
+                    p: 3, 
+                    borderRadius: '20px', 
+                    backgroundColor: 'rgba(255,255,255,0.9)' 
+                  }}
+                >
+
+
+
+
+
+
+
+                  <Typography 
+                    variant="h5" 
+                    sx={{ 
+                      mb: 3, 
+                      color: '#00B575', 
+                      fontFamily: '"Poppins", "Quicksand", sans-serif', 
+                      fontWeight: 'bold' 
+                    }}
+                  >
+                    My Art Gallery ✨
+                  </Typography>
+
+                  <KawaiiGallery items={artworks} columns={2} spacing={2} />
+
+                  <Box sx={{ textAlign: 'center', mt: 3 }}>
+
+
+                    <SocialButton 
+                      variant="contained" 
+                      color="primary"
+                      sx={{ px: 4 }}
+                      href="/fairies"
+                    >
+                      View Fairy Collection
+                    </SocialButton>
+                  </Box>
+                </Paper>
+              </Grid>
+            </Grid>
+          </motion.div>
+        </ProfileContainer>
+      </Box>
+    </PageTransition>
   );
 };
 

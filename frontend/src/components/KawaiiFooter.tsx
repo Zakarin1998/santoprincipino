@@ -89,7 +89,7 @@ const KawaiiFooter: React.FC = () => {
             <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
               <Box 
                 component="img" 
-                src="https://via.placeholder.com/120x60/FFD1DC/FF6B98?text=Chiara" 
+                src="https://i.ibb.co/b5VB1Vz/saint-principino-001.jpg" 
                 alt="Chiara's Logo" 
                 sx={{ 
                   height: 60, 

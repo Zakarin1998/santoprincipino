@@ -1,24 +1,43 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { CssBaseline, ThemeProvider, Alert, Snackbar } from '@mui/material'
-import ChiaraProfilePage from './pages/ChiaraProfilePage'
-import KawaiiNavbar from './components/KawaiiNavbar'
-import CustomCursor from './components/CustomCursor'
-import KawaiiGalleryPage from './pages/KawaiiGalleryPage'
-import KawaiiCommissionsPage from './pages/KawaiiCommissionsPage'
-import KawaiiAboutPage from './pages/KawaiiAboutPage'
-import KawaiiContactPage from './pages/KawaiiContactPage'
-import KawaiiFairyPage from './pages/KawaiiFairyPage'
+import { Alert, Snackbar, Box } from '@mui/material'
 import axios from 'axios'
 import type { ChiaraData } from './types'
-import kawaiiTheme from './themes/kawaiitheme'
 
-// Define API base URL (nuova porta 3030)
+// Lazy loading per i componenti
+const KawaiiNavbar = React.lazy(() => import('./components/KawaiiNavbar'))
+const CustomCursor = React.lazy(() => import('./components/CustomCursor'))
+const ChiaraProfilePage = React.lazy(() => import('./pages/ChiaraProfilePage'))
+const KawaiiGalleryPage = React.lazy(() => import('./pages/KawaiiGalleryPage'))
+const KawaiiCommissionsPage = React.lazy(() => import('./pages/KawaiiCommissionsPage'))
+const KawaiiAboutPage = React.lazy(() => import('./pages/KawaiiAboutPage'))
+const KawaiiContactPage = React.lazy(() => import('./pages/KawaiiContactPage'))
+const KawaiiFairyPage = React.lazy(() => import('./pages/KawaiiFairyPage'))
+const KawaiiFooter = React.lazy(() => import('./components/KawaiiFooter'))
+
+// Define API base URL
 const API_URL = 'http://localhost:3030/api';
+
+// Loader Component
+const PageLoader = () => (
+  <Box
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    height="100vh"
+    sx={{
+      background: 'linear-gradient(135deg, #FFF0F5 0%, #F0F8FF 100%)',
+    }}
+  >
+    <div>Loading...</div>
+  </Box>
+)
+
 function App() {
   const [chiaraData, setChiaraData] = useState<ChiaraData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,39 +59,79 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={kawaiiTheme}>
-      <CssBaseline />
-          <CustomCursor />
-      <Routes>
-        <Route 
-          path="/" 
-          element={<ChiaraProfilePage />} 
-        />
-        <Route
-          path="/gallery"
-          element={<KawaiiGalleryPage />}
-        />
-        <Route
-          path="/commissions"
-          element={<KawaiiCommissionsPage />}
-        />
-        <Route
-          path="/about"
-          element={<KawaiiAboutPage />}
-        />
-        <Route
-          path="/contact"
-          element={<KawaiiContactPage />}
-        />
-        <Route
-          path="/fairies"
-          element={<KawaiiFairyPage />}
-        />
-      </Routes>
-      
-      <Snackbar 
-        open={!!error} 
-        autoHideDuration={6000} 
+    <>
+      <Suspense fallback={<PageLoader />}>
+        <KawaiiNavbar />
+        <CustomCursor />
+
+        <Box
+          sx={{
+            minHeight: 'calc(100vh - 64px)', // Sottrae l'altezza della navbar
+            display: 'flex',
+            flexDirection: 'column',
+            paddingTop: '64px', // Altezza della navbar
+          }}
+        >
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  <ChiaraProfilePage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/gallery"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  <KawaiiGalleryPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/commissions"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  <KawaiiCommissionsPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  <KawaiiAboutPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  <KawaiiContactPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/fairies"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  <KawaiiFairyPage />
+                </Suspense>
+              }
+            />
+          </Routes>
+        </Box>
+
+        <Suspense fallback={<div />}>
+          <KawaiiFooter />
+        </Suspense>
+      </Suspense>
+
+      <Snackbar
+        open={!!error}
+        autoHideDuration={6000}
         onClose={handleCloseError}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
@@ -80,7 +139,7 @@ function App() {
           {error}
         </Alert>
       </Snackbar>
-    </ThemeProvider>
+    </>
   )
 }
 

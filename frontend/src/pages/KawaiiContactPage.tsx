@@ -19,7 +19,7 @@ import { motion } from 'framer-motion';
 const PageContainer = styled(Box)(({ theme }) => ({
   minHeight: '100vh',
   backgroundColor: '#FFF0F5',
-  backgroundImage: 'url("https://via.placeholder.com/100x100/FFFFFF/FFCCDD?text=+")',
+  backgroundImage: 'url("https://i.ibb.co/b5VB1Vz/saint-principino-001.jpg")',
   backgroundSize: '20px 20px',
   paddingTop: theme.spacing(12),
   paddingBottom: theme.spacing(8)
@@ -240,13 +240,13 @@ const KawaiiContactPage: React.FC = () => {
                 </Typography>
                 
                 <Box>
-                  <SocialButton color="primary" href="https://instagram.com/chiaras_art" target="_blank">
+                  <SocialButton color="primary" href="https://instagram.com/santoprincipino" target="_blank">
                     <InstagramIcon sx={{ fontSize: 32 }} />
                   </SocialButton>
-                  <SocialButton color="primary" href="https://twitter.com/chiaras_art" target="_blank">
+                  <SocialButton color="primary" href="https://twitter.com/santoprincipino" target="_blank">
                     <TwitterIcon sx={{ fontSize: 32 }} />
                   </SocialButton>
-                  <SocialButton color="primary" href="mailto:chiara@kawaii-art.com">
+                  <SocialButton color="primary" href="info@santoprincipino.com">
                     <EmailIcon sx={{ fontSize: 32 }} />
                   </SocialButton>
                 </Box>
