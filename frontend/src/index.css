@@ -1,0 +1,141 @@
+:root {
+  font-family: 'Quicksand', 'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: #4A4A4A;
+  background-color: #FFF0F5;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* For anchor links to account for fixed navbar */
+:target {
+  scroll-margin-top: 80px;
+}
+
+/* Customized scrollbar for Chiara's kawaii theme */
+::-webkit-scrollbar {
+  width: 12px;
+  display: block;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFF0F5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #FFB6C1, #FF8FB1);
+  border-radius: 10px;
+  border: 3px solid #FFF0F5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #FF6B98, #FF8FB1);
+}
+
+/* Custom selection color */
+::selection {
+  background-color: rgba(255, 107, 152, 0.3);
+  color: #4A4A4A;
+}
+
+/* Path for cursor */
+.rainbow-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* For the original theme, we'll keep some of the original styles */
+.original-theme {
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #121212;
+}
+
+.original-theme::-webkit-scrollbar {
+  display: none;
+}
+
+.original-theme {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+a {
+  font-weight: 500;
+  color: #FF6B98;
+  text-decoration: inherit;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #D14676;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 30px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: 'Quicksand', 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+button:focus,
+button:focus-visible {
+  outline: 3px solid rgba(255, 107, 152, 0.5);
+}
+
+/* Animation for page transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition-enter {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Remove dark mode preferences */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #4A4A4A;
+    background-color: #FFF0F5;
+  }
+}

@@ -1,0 +1,533 @@
+/* Stili globali per il tema kawaii moderno e giocoso con contrasti nitidi */
+
+/* Effetto floating sugli elementi */
+.kawaii-float {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Effetto pulsante */
+.kawaii-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Titoli con effetto ombra moderno */
+.kawaii-title {
+  font-family: "Poppins", "Quicksand", sans-serif;
+  color: #FF4D8D;
+  text-shadow: 2px 2px 0 #FFC0CB, 4px 4px 0 rgba(0,0,0,0.15);
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+.kawaii-title::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 5px;
+  background: linear-gradient(90deg, #FF4D8D, #FF7DAE);
+  left: 0;
+  bottom: -10px;
+  border-radius: 5px;
+}
+
+/* Bordi carini per immagini con contrasto migliorato */
+.kawaii-border {
+  border-radius: 20px;
+  border: 5px solid rgba(255, 77, 141, 0.7);
+  box-shadow: 
+    0 10px 20px rgba(255, 77, 141, 0.2),
+    0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.kawaii-border:hover {
+  transform: scale(1.03) translateY(-5px);
+  box-shadow: 
+    0 15px 30px rgba(255, 77, 141, 0.25),
+    0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.kawaii-border::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  background: linear-gradient(45deg, #FF4D8D, #25DB95, #4DABFF, #FF4D8D);
+  background-size: 400% 400%;
+  border-radius: 22px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.kawaii-border:hover::after {
+  opacity: 0.5;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Sfondi moderni e giocosi */
+.kawaii-dots {
+  background-color: #FFF0F5;
+  background-image: 
+    radial-gradient(#FF7DAE 2px, transparent 2px),
+    radial-gradient(#4DABFF 2px, transparent 2px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.kawaii-lines {
+  background-color: #FFF0F5;
+  background-image: 
+    linear-gradient(90deg, rgba(255, 77, 141, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(37, 219, 149, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.kawaii-grid {
+  background-color: #FFF0F5;
+  background-image: 
+    linear-gradient(rgba(255, 77, 141, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 171, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.kawaii-gradient {
+  background: linear-gradient(135deg, #FFF0F5 0%, #FFE6F0 50%, #FFF0F5 100%);
+  background-size: 200% 200%;
+  animation: gradient-animation 10s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Card con bordi ondulati - versione moderna */
+.kawaii-card {
+  border-radius: 20px;
+  background-color: white;
+  border: 3px solid rgba(255, 77, 141, 0.5);
+  box-shadow: 
+    0 10px 20px rgba(255, 77, 141, 0.15),
+    0 5px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.kawaii-card::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  z-index: -1;
+  background: linear-gradient(45deg, #FF4D8D, #25DB95, #4DABFF, #FF4D8D);
+  background-size: 400% 400%;
+  border-radius: 25px;
+  opacity: 0.3;
+  filter: blur(15px);
+  transition: all 0.3s ease;
+  animation: gradient-shift 10s ease infinite;
+}
+
+.kawaii-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 15px 30px rgba(255, 77, 141, 0.2),
+    0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.kawaii-card:hover::before {
+  opacity: 0.5;
+  filter: blur(20px);
+}
+
+/* Bottoni carini con effetti migliorati */
+.kawaii-button {
+  border-radius: 30px;
+  padding: 12px 28px;
+  font-family: "Quicksand", "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #FF4D8D 0%, #FF7DAE 100%);
+  color: white;
+  border: none;
+  box-shadow: 
+    0 5px 0 rgba(209, 42, 101, 0.5),
+    0 5px 15px rgba(255, 77, 141, 0.3);
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.kawaii-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #FF7DAE 0%, #FF4D8D 100%);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.kawaii-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 8px 0 rgba(209, 42, 101, 0.5),
+    0 8px 20px rgba(255, 77, 141, 0.4);
+}
+
+.kawaii-button:hover::after {
+  opacity: 1;
+}
+
+.kawaii-button:active {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 3px 0 rgba(209, 42, 101, 0.5),
+    0 3px 10px rgba(255, 77, 141, 0.3);
+}
+
+/* Versione secondaria del bottone */
+.kawaii-button-secondary {
+  background: linear-gradient(135deg, #25DB95 0%, #5AEDBA 100%);
+  box-shadow: 
+    0 5px 0 rgba(0, 168, 112, 0.5),
+    0 5px 15px rgba(37, 219, 149, 0.3);
+}
+
+.kawaii-button-secondary::after {
+  background: linear-gradient(135deg, #5AEDBA 0%, #25DB95 100%);
+}
+
+.kawaii-button-secondary:hover {
+  box-shadow: 
+    0 8px 0 rgba(0, 168, 112, 0.5),
+    0 8px 20px rgba(37, 219, 149, 0.4);
+}
+
+.kawaii-button-secondary:active {
+  box-shadow: 
+    0 3px 0 rgba(0, 168, 112, 0.5),
+    0 3px 10px rgba(37, 219, 149, 0.3);
+}
+
+/* Scia arcobaleno per il cursore - versione migliorata */
+.rainbow-trail {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.rainbow-dot {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: fadeOut 1.2s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0.8;
+    width: 8px;
+    height: 8px;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    width: 3px;
+    height: 3px;
+    filter: blur(1px);
+  }
+}
+
+/* Colori per la scia arcobaleno - colori più vibranti */
+.rainbow-1 { background-color: #FF4D8D; }
+.rainbow-2 { background-color: #FF6B3D; }
+.rainbow-3 { background-color: #FFCA3A; }
+.rainbow-4 { background-color: #25DB95; }
+.rainbow-5 { background-color: #4DABFF; }
+.rainbow-6 { background-color: #9747FF; }
+
+/* Effetto confetti per eventi speciali - migliorato */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9997;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 16px;
+  animation: confetti-fall 5s ease-out forwards, confetti-shake 3s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+.confetti.square {
+  width: 10px;
+  height: 10px;
+}
+
+.confetti.circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes confetti-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-15px);
+  }
+  50% {
+    transform: translateX(15px);
+  }
+  75% {
+    transform: translateX(-15px);
+  }
+}
+
+/* Nuove classi per effetti moderni */
+
+/* Badge con notifica pulsante */
+.kawaii-badge {
+  position: relative;
+  display: inline-flex;
+}
+
+.kawaii-badge::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 18px;
+  height: 18px;
+  background-color: #FF4D8D;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  animation: pulse 1.5s infinite;
+}
+
+/* Testo con gradiente */
+.text-gradient {
+  background: linear-gradient(90deg, #FF4D8D, #4DABFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Spinner kawaii */
+.kawaii-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 77, 141, 0.3);
+  border-top: 5px solid #FF4D8D;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Tooltip kawaii */
+.kawaii-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.kawaii-tooltip .tooltip-text {
+  visibility: hidden;
+  width: 150px;
+  background-color: white;
+  color: #252525;
+  text-align: center;
+  border-radius: 10px;
+  padding: 8px 12px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 
+    0 5px 15px rgba(0,0,0,0.1),
+    0 0 0 2px rgba(255, 77, 141, 0.2);
+}
+
+.kawaii-tooltip .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+.kawaii-tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Highlight text */
+.kawaii-highlight {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+
+.kawaii-highlight::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  left: -2px;
+  right: -2px;
+  height: 0.4em;
+  background-color: rgba(255, 77, 141, 0.4);
+  transition: height 0.2s ease;
+}
+
+.kawaii-highlight:hover::before {
+  height: 100%;
+  background-color: rgba(255, 77, 141, 0.15);
+}
+
+/* Box Shadow Hover Effect */
+.kawaii-shadow-hover {
+  transition: all 0.3s ease;
+}
+
+.kawaii-shadow-hover:hover {
+  box-shadow: 
+    0 7px 30px -10px rgba(255, 77, 141, 0.5),
+    0 5px 15px rgba(0,0,0,0.07);
+}
+
+/* Effetto glitch - per elementi speciali */
+.kawaii-glitch {
+  position: relative;
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+  2%, 64% {
+    transform: translate(2px, 0) skew(0deg);
+  }
+  4%, 60% {
+    transform: translate(-2px, 0) skew(0deg);
+  }
+  62% {
+    transform: translate(0, 0) skew(5deg);
+  }
+}
+
+.kawaii-glitch:before,
+.kawaii-glitch:after {
+  content: attr(title);
+  position: absolute;
+  left: 0;
+}
+
+.kawaii-glitch:before {
+  animation: glitchTop 1s linear infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  color: #FF4D8D;
+}
+
+@keyframes glitchTop {
+  2%, 64% {
+    transform: translate(2px, -2px);
+  }
+  4%, 60% {
+    transform: translate(-2px, 2px);
+  }
+  62% {
+    transform: translate(13px, -1px) skew(-13deg);
+  }
+}
+
+.kawaii-glitch:after {
+  animation: glitchBottom 1.5s linear infinite;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  color: #25DB95;
+}
+
+@keyframes glitchBottom {
+  2%, 64% {
+    transform: translate(-2px, 0);
+  }
+  4%, 60% {
+    transform: translate(-2px, 0);
+  }
+  62% {
+    transform: translate(-22px, 5px) skew(21deg);
+  }
+}
