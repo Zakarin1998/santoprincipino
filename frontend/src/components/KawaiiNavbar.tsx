@@ -20,10 +20,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 // Stile kawaii per la navbar
 const KawaiiAppBar = styled(AppBar)(({ theme }) => ({
-  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+  backgroundColor: 'rgba(255, 255, 255, 0.95)', // Increased opacity for better contrast
   backdropFilter: 'blur(8px)',
-  boxShadow: '0 4px 20px rgba(255, 182, 193, 0.25)',
-  borderBottom: '3px solid #FFD1DC',
+  boxShadow: '0 4px 20px rgba(230, 25, 110, 0.25)', // Adjusted to match theme
+  borderBottom: '3px solid #E6196E', // Darker for better visibility
   transition: 'all 0.3s ease',
 }));
 
@@ -39,9 +39,10 @@ const LogoContainer = styled(Box)(({ theme }) => ({
     marginRight: theme.spacing(1),
   },
   '& h6': {
-    fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
+    fontFamily: '"Poppins", "Quicksand", sans-serif', // Updated font family
     fontWeight: 'bold',
-    background: 'linear-gradient(45deg, #FF6B98 30%, #36B37E 90%)',
+    // Changed gradient for better readability
+    background: 'linear-gradient(45deg, #E6196E 30%, #00B575 90%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     fontSize: '1.5rem',
@@ -53,11 +54,12 @@ const NavButton = styled(Button)(({ theme }) => ({
   borderRadius: '20px',
   padding: theme.spacing(0.5, 2),
   transition: 'all 0.3s ease',
-  fontFamily: '"Quicksand", "Comic Sans MS", sans-serif',
+  fontFamily: '"Quicksand", sans-serif',
   fontWeight: 600,
+  color: '#121212', // Darker text color for better contrast
   '&:hover': {
     transform: 'translateY(-2px)',
-    backgroundColor: 'rgba(255, 182, 193, 0.1)',
+    backgroundColor: 'rgba(230, 25, 110, 0.1)', // Adjusted to match theme
   },
   '&::after': {
     content: '""',
@@ -66,12 +68,16 @@ const NavButton = styled(Button)(({ theme }) => ({
     left: '50%',
     width: 0,
     height: '3px',
-    backgroundColor: '#FF6B98',
+    backgroundColor: '#E6196E', // Adjusted to match theme
     transition: 'all 0.3s ease',
     transform: 'translateX(-50%)',
   },
   '&:hover::after': {
     width: '80%',
+  },
+  '&:focus': {
+    outline: '3px solid #E6196E',
+    outlineOffset: '2px',
   }
 }));
 
@@ -83,7 +89,7 @@ const MobileDrawer = styled(Drawer)(({ theme }) => ({
     backgroundImage: 'radial-gradient(#FFB6C1 2px, transparent 2px)',
     backgroundSize: '40px 40px',
     padding: theme.spacing(2),
-    borderRight: '3px solid #FFD1DC',
+    borderRight: '3px solid #E6196E', // Adjusted to match theme
   }
 }));
 
@@ -118,6 +124,7 @@ const KawaiiNavbar: React.FC<KawaiiNavbarProps> = ({ logoSrc = 'https://via.plac
   const navItems = [
     { text: 'Home', path: '/' },
     { text: 'Gallery', path: '/gallery' },
+    { text: 'Fairies', path: '/fairies' },
     { text: 'Commissions', path: '/commissions' },
     { text: 'About Me', path: '/about' },
     { text: 'Contact', path: '/contact' },
@@ -142,16 +149,16 @@ const KawaiiNavbar: React.FC<KawaiiNavbarProps> = ({ logoSrc = 'https://via.plac
               mb: 1,
               borderRadius: '16px',
               '&:hover': {
-                backgroundColor: 'rgba(255, 107, 152, 0.1)',
+                backgroundColor: 'rgba(230, 25, 110, 0.1)', // Adjusted to match theme
               }
             }}
           >
             <ListItemText 
               primary={item.text}
               primaryTypographyProps={{
-                fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
+                fontFamily: '"Poppins", "Quicksand", sans-serif', // Updated font family
                 fontWeight: 'bold',
-                color: '#FF6B98'
+                color: '#121212' // Darker for better contrast
               }}
             />
           </ListItem>
@@ -169,6 +176,7 @@ const KawaiiNavbar: React.FC<KawaiiNavbarProps> = ({ logoSrc = 'https://via.plac
           height: scrolled ? 70 : 80,
           transition: 'height 0.3s ease',
         }}
+        aria-label="Main Navigation" // Added for accessibility
       >
         <Container maxWidth="lg">
           <KawaiiToolbar disableGutters>
@@ -182,21 +190,22 @@ const KawaiiNavbar: React.FC<KawaiiNavbarProps> = ({ logoSrc = 'https://via.plac
             {isMobile ? (
               <IconButton
                 color="inherit"
-                aria-label="open drawer"
+                aria-label="open navigation menu"
                 edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ ml: 'auto', color: '#FF6B98' }}
+                sx={{ ml: 'auto', color: '#E6196E' }} // Adjusted to match theme
               >
                 <MenuIcon />
               </IconButton>
             ) : (
-              <Box sx={{ display: 'flex', ml: 'auto' }}>
+              <Box sx={{ display: 'flex', ml: 'auto' }} component="nav">
                 {navItems.map((item) => (
                   <NavButton
                     key={item.text}
                     component={RouterLink}
                     to={item.path}
                     color="inherit"
+                    aria-label={`Navigate to ${item.text}`} // Added for accessibility
                   >
                     {item.text}
                   </NavButton>
@@ -206,6 +215,7 @@ const KawaiiNavbar: React.FC<KawaiiNavbarProps> = ({ logoSrc = 'https://via.plac
                   color="primary"
                   component={RouterLink}
                   to="/commissions"
+                  aria-label="Order Commission" // Added for accessibility
                   sx={{
                     ml: 2,
                     borderRadius: '20px',
@@ -215,6 +225,10 @@ const KawaiiNavbar: React.FC<KawaiiNavbarProps> = ({ logoSrc = 'https://via.plac
                       transform: 'translateY(-2px)',
                       boxShadow: '0 6px 0 rgba(0,0,0,0.1)',
                     },
+                    '&:focus': {
+                      outline: '3px solid #B01355',
+                      outlineOffset: '2px',
+                    }
                   }}
                 >
                   Order Commission
@@ -230,6 +244,7 @@ const KawaiiNavbar: React.FC<KawaiiNavbarProps> = ({ logoSrc = 'https://via.plac
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
+        aria-label="Mobile Navigation Menu" // Added for accessibility
       >
         {drawer}
       </MobileDrawer>

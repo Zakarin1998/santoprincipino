@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Box, Container, Typography, Paper, Grid, Button, styled } from '@mui/material';
-import { IMAGES } from '../assets/imageConstants';
 import KawaiiGallery from '../components/KawaiiGallery';
 import '../assets/kawaii-global.css';
 
@@ -21,8 +20,8 @@ const ProfileContainer = styled(Container)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'url("https://i.ibb.co/gMFVKdyz/ORU2DH0.jpg") repeat',
-    backgroundSize: '100px',
+    background: 'radial-gradient(#FFB6C1 1.5px, transparent 1.5px)',
+    backgroundSize: '20px 20px',
     opacity: 0.05,
     pointerEvents: 'none',
     borderRadius: '12px',
@@ -33,14 +32,14 @@ const ProfileHeader = styled(Box)(({ theme }) => ({
   textAlign: 'center',
   marginBottom: theme.spacing(4),
   '& h1': {
-    fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
-    color: '#FF6B98',
+    fontFamily: '"Poppins", "Quicksand", sans-serif',
+    color: '#E6196E',
     textShadow: '2px 2px 0 #FFC0CB, 4px 4px 0 rgba(0,0,0,0.1)',
     marginBottom: theme.spacing(1),
   },
   '& h5': {
-    fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
-    color: '#36B37E',
+    fontFamily: '"Poppins", "Quicksand", sans-serif',
+    color: '#00B575',
   }
 }));
 
@@ -49,12 +48,12 @@ const InfoCard = styled(Paper)(({ theme }) => ({
   borderRadius: '16px',
   backgroundColor: 'rgba(255, 255, 255, 0.9)',
   border: '3px solid #FFD1DC',
-  boxShadow: '0 8px 16px rgba(255, 107, 152, 0.1)',
+  boxShadow: '0 8px 16px rgba(230, 25, 110, 0.1)',
   height: '100%',
   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
   '&:hover': {
     transform: 'translateY(-5px)',
-    boxShadow: '0 12px 20px rgba(255, 107, 152, 0.2)',
+    boxShadow: '0 12px 20px rgba(230, 25, 110, 0.2)',
   }
 }));
 
@@ -62,7 +61,7 @@ const SocialButton = styled(Button)(({ theme }) => ({
   borderRadius: '30px',
   margin: theme.spacing(1),
   padding: '8px 20px',
-  fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
+  fontFamily: '"Poppins", "Quicksand", sans-serif',
   fontWeight: 'bold',
   boxShadow: '0 4px 0 rgba(0,0,0,0.1)',
   transition: 'transform 0.2s ease, box-shadow 0.2s ease',
@@ -81,7 +80,7 @@ const CommissionCard = styled(Paper)(({ theme }) => ({
   borderRadius: '16px',
   backgroundColor: '#FFF8FA',
   border: '3px solid #FFD1DC',
-  boxShadow: '0 8px 16px rgba(255, 107, 152, 0.1)',
+  boxShadow: '0 8px 16px rgba(230, 25, 110, 0.1)',
   marginTop: theme.spacing(4),
   position: 'relative',
 }));
@@ -94,7 +93,7 @@ const ChiaraProfilePage: React.FC = () => {
       confettiContainer.className = 'confetti-container';
       document.body.appendChild(confettiContainer);
       
-      const colors = ['#FF6B98', '#FFB6C1', '#D1FFD1', '#D1DCFF', '#FFFFD1'];
+      const colors = ['#E6196E', '#FFB6C1', '#D1FFD1', '#D1DCFF', '#FFFFD1'];
       
       for (let i = 0; i < 100; i++) {
         setTimeout(() => {
@@ -124,49 +123,35 @@ const ChiaraProfilePage: React.FC = () => {
     createConfetti();
   }, []);
 
-  // I artwork samples - replace with actual links later
+  // Sample artworks with fixed image URLs
   const artworks = [
       {
         "id": 1,
-        "title": "Kawaii Bunny",
-        "image": "https://www.freepik.com/free-vector/cute-rabbit-sitting-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-flat_13888817.htm",
-        "description": "A cute bunny character in pastel colors",
-        "category": "characters"
+        "title": "Fairy Guardian of the Forest",
+        "image": "https://i.ibb.co/b5VB1Vz/saint-principino-001.jpg",
+        "description": "A magical fairy with emerald wings who protects the ancient forest.",
+        "category": "fairies"
       },
       {
         "id": 2,
-        "title": "Forest Friends",
-        "image": "https://www.freepik.com/free-vector/watercolor-forest-animals-element-collection_10646925.htm",
-        "description": "A collection of adorable forest animals",
-        "category": "characters"
+        "title": "Moonlight Fairy",
+        "image": "https://i.ibb.co/FLRTqcH/saint-principino-002.jpg",
+        "description": "A celestial fairy who draws her power from the moon's glow.",
+        "category": "fairies"
       },
       {
         "id": 3,
-        "title": "Magic Unicorn",
-        "image": "https://www.freepik.com/free-vector/unicorn-cartoon-character-with-dream-little-dream-font-banner_13888819.htm",
-        "description": "A sparkly unicorn with rainbow mane",
-        "category": "characters"
+        "title": "Twilight Fairy Princess",
+        "image": "https://i.ibb.co/xtPTTSb/saint-principino-003.jpg",
+        "description": "The princess of the twilight realm, where day meets night.",
+        "category": "fairies"
       },
       {
         "id": 4,
-        "title": "Sweet Treats",
-        "image": "https://www.freepik.com/free-vector/hand-drawn-kawaii-food-illustration_13888820.htm",
-        "description": "Cute dessert characters with smiling faces",
-        "category": "food"
-      },
-      {
-        "id": 5,
-        "title": "Pastel Landscape",
-        "image": "https://www.freepik.com/free-vector/hand-painted-mountains-background_13888821.htm",
-        "description": "Dreamy pastel landscape with cute elements",
-        "category": "backgrounds"
-      },
-      {
-        "id": 6,
-        "title": "Kitty Dreams",
-        "image": "https://www.vecteezy.com/vector-art/13888822-sleeping-cat-cartoon-vector-illustration",
-        "description": "A sleepy kitten dreaming of yarn balls",
-        "category": "characters"
+        "title": "Crystal Fairy",
+        "image": "https://i.ibb.co/HLKD9KK/saint-principino-004.jpg",
+        "description": "A fairy born from the purest crystal, her wings shimmer with rainbow light.",
+        "category": "fairies"
       },
   ];
 
@@ -199,7 +184,7 @@ const ChiaraProfilePage: React.FC = () => {
       sx={{
         minHeight: '100vh',
         backgroundColor: '#FFF0F5',
-        backgroundImage: 'url("https://via.placeholder.com/100x100/FFFFFF/FFCCDD?text=+")',
+        backgroundImage: 'radial-gradient(#FFB6C1 1.5px, transparent 1.5px)',
         backgroundSize: '20px 20px',
         pt: 12, // Add padding top to account for the navbar
         pb: 8
@@ -243,7 +228,7 @@ const ChiaraProfilePage: React.FC = () => {
               <Box sx={{ textAlign: 'center', mb: 3 }}>
                 <Box 
                   component="img"
-                  src="https://via.placeholder.com/200x200/FFB6C1/FFFFFF?text=Chiara"
+                  src="https://i.ibb.co/PssMw2w/home-4.jpg"
                   alt="Chiara's Profile"
                   className="kawaii-float"
                   sx={{
@@ -251,10 +236,11 @@ const ChiaraProfilePage: React.FC = () => {
                     height: 180,
                     borderRadius: '50%',
                     border: '5px solid #FFD1DC',
-                    mb: 2
+                    mb: 2,
+                    objectFit: 'cover'
                   }}
                 />
-                <Typography variant="h5" sx={{ color: '#FF6B98', fontFamily: '"Comic Sans MS", "Comic Sans", cursive', fontWeight: 'bold' }}>
+                <Typography variant="h5" sx={{ color: '#E6196E', fontFamily: '"Poppins", "Quicksand", sans-serif', fontWeight: 'bold' }}>
                   Chiara
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
@@ -282,11 +268,11 @@ const ChiaraProfilePage: React.FC = () => {
           {/* Gallery Preview */}
           <Grid item xs={12} md={8}>
             <InfoCard>
-              <Typography variant="h5" sx={{ mb: 3, color: '#36B37E', fontFamily: '"Comic Sans MS", "Comic Sans", cursive', fontWeight: 'bold' }}>
+              <Typography variant="h5" sx={{ mb: 3, color: '#00B575', fontFamily: '"Poppins", "Quicksand", sans-serif', fontWeight: 'bold' }}>
                 My Art Gallery ✨
               </Typography>
               
-              <KawaiiGallery items={artworks.slice(0, 4)} columns={2} spacing={2} />
+              <KawaiiGallery items={artworks} columns={2} spacing={2} />
               
               <Box sx={{ textAlign: 'center', mt: 3 }}>
                 <SocialButton 
@@ -294,8 +280,9 @@ const ChiaraProfilePage: React.FC = () => {
                   color="primary"
                   sx={{ px: 4 }}
                   className="kawaii-pulse"
+                  href="/fairies"
                 >
-                  View Full Gallery
+                  View Fairy Collection
                 </SocialButton>
               </Box>
             </InfoCard>
@@ -304,7 +291,7 @@ const ChiaraProfilePage: React.FC = () => {
         
         {/* Commissions Section */}
         <CommissionCard>
-          <Typography variant="h5" sx={{ mb: 3, textAlign: 'center', color: '#FF6B98', fontFamily: '"Comic Sans MS", "Comic Sans", cursive', fontWeight: 'bold' }}>
+          <Typography variant="h5" sx={{ mb: 3, textAlign: 'center', color: '#E6196E', fontFamily: '"Poppins", "Quicksand", sans-serif', fontWeight: 'bold' }}>
             Commission Information
           </Typography>
           
@@ -323,10 +310,10 @@ const ChiaraProfilePage: React.FC = () => {
                   className="kawaii-float"
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >
-                  <Typography variant="h6" sx={{ color: '#FF6B98', fontFamily: '"Comic Sans MS", "Comic Sans", cursive' }}>
+                  <Typography variant="h6" sx={{ color: '#E6196E', fontFamily: '"Poppins", "Quicksand", sans-serif' }}>
                     {commission.type}
                   </Typography>
-                  <Typography variant="h5" sx={{ color: '#36B37E', my: 1, fontWeight: 'bold' }}>
+                  <Typography variant="h5" sx={{ color: '#00B575', my: 1, fontWeight: 'bold' }}>
                     {commission.price}
                   </Typography>
                   <Typography variant="body2">
@@ -338,7 +325,7 @@ const ChiaraProfilePage: React.FC = () => {
           </Grid>
           
           <Box sx={{ mt: 4, p: 3, backgroundColor: '#FFF0F5', borderRadius: '12px', border: '2px solid #FFD1DC' }}>
-            <Typography variant="h6" sx={{ mb: 2, color: '#FF6B98', fontFamily: '"Comic Sans MS", "Comic Sans", cursive' }}>
+            <Typography variant="h6" sx={{ mb: 2, color: '#E6196E', fontFamily: '"Poppins", "Quicksand", sans-serif' }}>
               Please Note:
             </Typography>
             <Typography variant="body1" component="div">
@@ -357,6 +344,7 @@ const ChiaraProfilePage: React.FC = () => {
                 color="secondary"
                 sx={{ px: 4 }}
                 className="kawaii-pulse"
+                href="/contact"
               >
                 Request Commission
               </SocialButton>

@@ -3,19 +3,18 @@ import { Routes, Route } from 'react-router-dom'
 import { CssBaseline, ThemeProvider, Alert, Snackbar } from '@mui/material'
 import ChiaraProfilePage from './pages/ChiaraProfilePage'
 import KawaiiNavbar from './components/KawaiiNavbar'
-import KawaiiFooter from './components/KawaiiFooter'
 import CustomCursor from './components/CustomCursor'
 import KawaiiGalleryPage from './pages/KawaiiGalleryPage'
 import KawaiiCommissionsPage from './pages/KawaiiCommissionsPage'
 import KawaiiAboutPage from './pages/KawaiiAboutPage'
 import KawaiiContactPage from './pages/KawaiiContactPage'
+import KawaiiFairyPage from './pages/KawaiiFairyPage'
 import axios from 'axios'
 import type { ChiaraData } from './types'
 import kawaiiTheme from './themes/kawaiitheme'
 
-// Define API base URL
-const API_URL = 'https://localhost:5000/api';
-
+// Define API base URL (nuova porta 3030)
+const API_URL = 'http://localhost:3030/api';
 function App() {
   const [chiaraData, setChiaraData] = useState<ChiaraData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -28,7 +27,7 @@ function App() {
         setLoading(false);
       } catch (error) {
         console.error('Error fetching Chiara data:', error);
-        setError('Failed to load data. Please make sure the backend server is running.');
+        setError('Failed to load data. Please make sure the backend server is running on port 3030.');
         setLoading(false);
       }
     };
@@ -43,7 +42,6 @@ function App() {
   return (
     <ThemeProvider theme={kawaiiTheme}>
       <CssBaseline />
-      <KawaiiNavbar logoSrc="https://i.ibb.co/LDBd4nRj/cielo-rosa.png" />
           <CustomCursor />
       <Routes>
         <Route 
@@ -66,9 +64,12 @@ function App() {
           path="/contact"
           element={<KawaiiContactPage />}
         />
+        <Route
+          path="/fairies"
+          element={<KawaiiFairyPage />}
+        />
       </Routes>
       
-      <KawaiiFooter />
       <Snackbar 
         open={!!error} 
         autoHideDuration={6000} 

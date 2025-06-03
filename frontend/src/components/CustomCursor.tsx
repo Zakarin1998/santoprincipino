@@ -7,7 +7,7 @@ const NyanCatCursor: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [visible, setVisible] = useState(false);
   const [clicked, setClicked] = useState(false);
-  const [trail, setTrail] = useState<Array<{ x: number, y: number, id: number }>>([]);
+  const [trail, setTrail] = useState<Array<{ x: number, y: number, id: string }>>([]);
 
   useEffect(() => {
     // Funzione per seguire il mouse
@@ -19,7 +19,7 @@ const NyanCatCursor: React.FC = () => {
       // Aggiungi un punto alla scia
       setTrail(prevTrail => {
         const newTrail = [
-          { x: newPosition.x, y: newPosition.y, id: Date.now() },
+          { x: newPosition.x, y: newPosition.y, id: `trail-${Date.now()}-${Math.random()}` },
           ...prevTrail.slice(0, 10) // Limita la lunghezza della scia
         ];
         return newTrail;

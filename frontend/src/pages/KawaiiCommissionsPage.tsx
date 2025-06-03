@@ -14,7 +14,7 @@ import {
 import axios from 'axios';
 import type { CommissionsInfo, CommissionType } from '../types';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://localhost:5002/api';
 
 const PageContainer = styled(Box)(({ theme }) => ({
   minHeight: '100vh',

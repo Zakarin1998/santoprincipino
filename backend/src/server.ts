@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 
 const app = express();
-const PORT = 5000;
-
+// Utilizziamo la porta 3030 che dovrebbe essere libera
+const PORT = 3030;
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -21,7 +21,7 @@ const chiaraData = {
       'My art style is influenced by Japanese kawaii culture, cartoon aesthetics, and my love for all things cute and pastel-colored.',
       'When I\'m not drawing, I enjoy watching anime, collecting plushies, and drinking way too much bubble tea! ✨🧋✨'
     ],
-    avatarImage: 'https://i.ibb.co/PssMw2wQ/home-4.jpg',
+    avatarImage: 'https://i.ibb.co/PssMw2w/home-4.jpg',
     subtitle: 'Artist • Illustrator • Dreamer',
     socialLinks: {
       instagram: 'https://instagram.com/santoprincipino',
@@ -32,60 +32,39 @@ const chiaraData = {
   gallery: [
       {
         "id": 1,
-        "title": "Kawaii Bunny",
-        "image": "https://www.freepik.com/free-vector/cute-rabbit-sitting-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-flat_13888817.htm",
-        "description": "A cute bunny character in pastel colors",
-        "category": "characters"
+        "title": "Fairy Guardian of the Forest",
+        "image": "https://i.ibb.co/b5VB1Vz/saint-principino-001.jpg",
+        "description": "A magical fairy with emerald wings who protects the ancient forest.",
+        "category": "fairies"
       },
       {
         "id": 2,
-        "title": "Forest Friends",
-        "image": "https://www.freepik.com/free-vector/watercolor-forest-animals-element-collection_10646925.htm",
-        "description": "A collection of adorable forest animals",
-        "category": "characters"
+        "title": "Moonlight Fairy",
+        "image": "https://i.ibb.co/FLRTqcH/saint-principino-002.jpg",
+        "description": "A celestial fairy who draws her power from the moon's glow.",
+        "category": "fairies"
       },
       {
         "id": 3,
-        "title": "Magic Unicorn",
-        "image": "https://www.freepik.com/free-vector/unicorn-cartoon-character-with-dream-little-dream-font-banner_13888819.htm",
-        "description": "A sparkly unicorn with rainbow mane",
-        "category": "characters"
+        "title": "Twilight Fairy Princess",
+        "image": "https://i.ibb.co/FLRTqcH/saint-principino-002-b.jpg",
+        "description": "The princess of the twilight realm, where day meets night.",
+        "category": "fairies"
       },
       {
         "id": 4,
-        "title": "Sweet Treats",
-        "image": "https://www.freepik.com/free-vector/hand-drawn-kawaii-food-illustration_13888820.htm",
-        "description": "Cute dessert characters with smiling faces",
-        "category": "food"
+        "title": "Crystal Fairy",
+        "image": "https://i.ibb.co/xtPTTSb/saint-principino-003.jpg",
+        "description": "A fairy born from the purest crystal, her wings shimmer with rainbow light.",
+        "category": "fairies"
       },
       {
         "id": 5,
-        "title": "Pastel Landscape",
-        "image": "https://www.freepik.com/free-vector/hand-painted-mountains-background_13888821.htm",
-        "description": "Dreamy pastel landscape with cute elements",
-        "category": "backgrounds"
+        "title": "Spring Blossom Fairy",
+        "image": "https://i.ibb.co/HLKD9KK/saint-principino-004.jpg",
+        "description": "The harbinger of spring who brings flowers to bloom with her touch.",
+        "category": "fairies"
       },
-      {
-        "id": 6,
-        "title": "Kitty Dreams",
-        "image": "https://www.vecteezy.com/vector-art/13888822-sleeping-cat-cartoon-vector-illustration",
-        "description": "A sleepy kitten dreaming of yarn balls",
-        "category": "characters"
-      },
-      {
-        "id": 7,
-        "title": "Cupcake Party",
-        "image": "https://www.freepik.com/free-vector/flat-kawaii-food-collection_13888823.htm",
-        "description": "Adorable cupcakes with happy faces celebrating",
-        "category": "food"
-      },
-      {
-        "id": 8,
-        "title": "Space Adventure",
-        "image": "https://www.freepik.com/free-vector/alien-spaceship-stars_13888824.htm",
-        "description": "Cute characters exploring the cosmos",
-        "category": "backgrounds"
-      }
   ],
   commissions: {
     status: "open",
@@ -123,33 +102,82 @@ const chiaraData = {
   testimonials: [
     {
       name: "Luna",
-      avatar: "https://i.ibb.co/PssMw2wQ/home-4.jpg",
+      avatar: "https://i.ibb.co/PssMw2w/home-4.jpg",
       comment: "Chiara's art is so adorable! I commissioned a character design and couldn't be happier with the result. Fast and professional service!",
       rating: 5
     },
     {
       name: "Mark",
-      avatar: "https://i.ibb.co/PssMw2wQ/home-4.jpg",
+      avatar: "https://i.ibb.co/PssMw2w/home-4.jpg",
       comment: "The emotes Chiara made for my Twitch channel are perfect! My viewers love them and they perfectly capture the cute style I was looking for.",
       rating: 5
     },
     {
       name: "Sophia",
-      avatar: "https://i.ibb.co/PssMw2wQ/home-4.jpg",
+      avatar: "https://i.ibb.co/PssMw2w/home-4.jpg",
       comment: "Working with Chiara was a dream! She was responsive, took my feedback well, and delivered an illustration that exceeded my expectations.",
       rating: 5
     }
   ]
 };
 
-// Nuove rotte per i dati di Chiara
+// Fairy collection separate endpoint
+const fairyCollection = [
+  {
+    "id": 1,
+    "title": "Fairy Guardian of the Forest",
+    "image": "https://i.ibb.co/b5VB1Vz/saint-principino-001.jpg",
+    "description": "A magical fairy with emerald wings who protects the ancient forest.",
+    "details": "This fairy guardian has lived for centuries, watching over the oldest trees in the enchanted forest. Her wings change color with the seasons, and she can communicate with all woodland creatures.",
+    "powers": ["Nature magic", "Animal communication", "Healing touch"],
+    "category": "fairies"
+  },
+  {
+    "id": 2,
+    "title": "Moonlight Fairy",
+    "image": "https://i.ibb.co/FLRTqcH/saint-principino-002.jpg",
+    "description": "A celestial fairy who draws her power from the moon's glow.",
+    "details": "Born during a lunar eclipse, this fairy's silvery wings reflect moonlight even in complete darkness. She guides lost travelers by night and brings peaceful dreams to children.",
+    "powers": ["Illumination", "Dream weaving", "Night vision"],
+    "category": "fairies"
+  },
+  {
+    "id": 3,
+    "title": "Twilight Fairy Princess",
+    "image": "https://i.ibb.co/FLRTqcH/saint-principino-002-b.jpg",
+    "description": "The princess of the twilight realm, where day meets night.",
+    "details": "As ruler of the twilight hours, this fairy princess maintains the delicate balance between day and night. Her crown is made from the first rays of dawn and the last light of dusk.",
+    "powers": ["Time manipulation", "Twilight portals", "Shadow weaving"],
+    "category": "fairies"
+  },
+  {
+    "id": 4,
+    "title": "Crystal Fairy",
+    "image": "https://i.ibb.co/xtPTTSb/saint-principino-003.jpg",
+    "description": "A fairy born from the purest crystal, her wings shimmer with rainbow light.",
+    "details": "This fairy emerged from a rare crystal formed deep within the earth over thousands of years. Her touch can turn ordinary stones into precious gems, and her laughter sounds like wind chimes.",
+    "powers": ["Crystallomancy", "Light refraction", "Gemstone creation"],
+    "category": "fairies"
+  },
+  {
+    "id": 5,
+    "title": "Spring Blossom Fairy",
+    "image": "https://i.ibb.co/HLKD9KK/saint-principino-004.jpg",
+    "description": "The harbinger of spring who brings flowers to bloom with her touch.",
+    "details": "This fairy awakens each year when the snow begins to melt. Her gossamer wings carry the scent of fresh blossoms, and wherever she dances, flowers burst into bloom regardless of season.",
+    "powers": ["Flora acceleration", "Pollen control", "Seasonal awakening"],
+    "category": "fairies"
+  }
+];
+
+// API Routes
 app.get('/api/chiara/profile', (req, res) => {
   res.json(chiaraData.profile);
 });
 
 app.get('/api/chiara/gallery', (req, res) => {
   const { category } = req.query;
-  
+
   if (category && category !== 'all') {
     const filteredGallery = chiaraData.gallery.filter(item => item.category === category);
     res.json(filteredGallery);
@@ -170,7 +198,29 @@ app.get('/api/chiara', (req, res) => {
   res.json(chiaraData);
 });
 
-// Start server
+// New endpoint for fairy collection
+app.get('/api/fairies', (req, res) => {
+  res.json(fairyCollection);
+});
+
+// Get a specific fairy by ID
+app.get('/api/fairies/:id', (req, res) => {
+  const fairyId = parseInt(req.params.id);
+  const fairy = fairyCollection.find(f => f.id === fairyId);
+
+  if (fairy) {
+    res.json(fairy);
+  } else {
+    res.status(404).json({ message: "Fairy not found" });
+  }
+});
+
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'Server is running properly' });
+});
+
+// Semplice avvio del server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

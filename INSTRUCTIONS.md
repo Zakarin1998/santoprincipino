@@ -134,7 +134,7 @@ cd ../frontend && npm install
 
 ### Backend not starting
 
-Check if another service is using port `5000`:
+Check if another service is using port `5002`:
 
 ```bash
 # On Windows
