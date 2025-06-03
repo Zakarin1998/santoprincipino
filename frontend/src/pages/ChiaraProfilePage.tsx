@@ -1,12 +1,5 @@
 import React, { useEffect } from 'react';
 
-
-
-
-
-
-
-
 import { 
   Box, 
   Container, 
@@ -67,11 +60,11 @@ const SocialButton = styled(Button)(({ theme }) => ({
 
 // Array di immagini da precaricare
 const IMAGE_PRELOAD_LIST = [
-  'https://i.ibb.co/PssMw2w/home-4.jpg',
-  'https://i.ibb.co/b5VB1Vz/saint-principino-001.jpg',
-  'https://i.ibb.co/FLRTqcH/saint-principino-002.jpg',
-  'https://i.ibb.co/xtPTTSb/saint-principino-003.jpg',
-  'https://i.ibb.co/HLKD9KK/saint-principino-004.jpg'
+    'https://i.ibb.co/PssMw2w/home-4.jpg',
+    'https://i.ibb.co/FbbRnFc0/saint-principino-001.jpg',
+    'https://i.ibb.co/3yj3Fpk4/saint-principino-002.jpg',
+    'https://i.ibb.co/h1KHZ1YX/saint-principino-003.jpg',
+    'https://i.ibb.co/RGxyYDVV/saint-principino-004.jpg'
 ];
 
 const ChiaraProfilePage: React.FC = () => {
@@ -122,12 +115,12 @@ const ChiaraProfilePage: React.FC = () => {
     }
   }, [imagesPreloaded]);
 
-  // Artwork samples con URL corretti
+  // Artwork samples con URL corretti e più affidabili
   const artworks = [
     {
       "id": 1,
       "title": "Fairy Guardian of the Forest",
-      "image": "https://i.ibb.co/b5VB1Vz/saint-principino-001.jpg",
+      "image": "https://i.ibb.co/RGxyYDVV/saint-principino-001.jpg",
       "description": "A magical fairy with emerald wings who protects the ancient forest.",
       "category": "fairies"
     },
@@ -196,24 +189,10 @@ const ChiaraProfilePage: React.FC = () => {
             transition={{ duration: 0.5 }}
           >
             <Box textAlign="center" mb={4}>
-
-
-
-
-              <Typography 
-                variant="h1" 
-                sx={{ 
-                  color: '#E6196E', 
-                  fontFamily: '"Poppins", "Quicksand", sans-serif',
-                  mb: 2
-                }}
+              <Typography variant="h1" sx={{color: '#E6196E', fontFamily: '"Poppins", "Quicksand", sans-serif', mb: 2}}
               >
                 Chiara's Art World
               </Typography>
-
-
-
-
 
               <Typography 
                 variant="h5" 
@@ -232,9 +211,6 @@ const ChiaraProfilePage: React.FC = () => {
                 <SocialButton variant="contained" color="secondary">
                   Twitter
                 </SocialButton>
-
-
-
                 <SocialButton 
                   variant="contained" 
                   sx={{ 
@@ -252,12 +228,6 @@ const ChiaraProfilePage: React.FC = () => {
             <Grid container spacing={4}>
               {/* About Me Section */}
               <Grid item xs={12} md={4}>
-
-
-
-
-
-
                 <Paper 
                   elevation={3} 
                   sx={{ 
@@ -270,23 +240,15 @@ const ChiaraProfilePage: React.FC = () => {
                     <LazyImage
                       src="https://i.ibb.co/PssMw2w/home-4.jpg"
                       alt="Chiara's Profile"
-
                       style={{
                         width: 180,
                         height: 180,
                         borderRadius: '50%',
                         border: '5px solid #FFD1DC',
-
                         marginBottom: 16,
                         objectFit: 'cover'
                       }}
                     />
-
-
-
-
-
-
                     <Typography 
                       variant="h5" 
                       sx={{ 
@@ -297,9 +259,6 @@ const ChiaraProfilePage: React.FC = () => {
                     >
                       Chiara
                     </Typography>
-
-
-
                     <Typography 
                       variant="body2" 
                       color="text.secondary" 
@@ -325,15 +284,8 @@ const ChiaraProfilePage: React.FC = () => {
                   </Typography>
                 </Paper>
               </Grid>
-
               {/* Gallery Preview */}
               <Grid item xs={12} md={8}>
-
-
-
-
-
-
                 <Paper 
                   elevation={3} 
                   sx={{ 
@@ -342,13 +294,6 @@ const ChiaraProfilePage: React.FC = () => {
                     backgroundColor: 'rgba(255,255,255,0.9)' 
                   }}
                 >
-
-
-
-
-
-
-
                   <Typography 
                     variant="h5" 
                     sx={{ 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { motion, MotionProps } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { BACKUP_IMAGES } from '../assets/imageBackups';
 
-interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement>, MotionProps {
+interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   placeholderSrc?: string;
 }
 
@@ -17,17 +17,34 @@ const LazyImage: React.FC<LazyImageProps> = ({
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    const img = new Image();
-    img.src = src || placeholderSrc;
-    img.onload = () => {
-      setImageSrc(src || placeholderSrc);
-      setImageLoaded(true);
+    // Funzione per verificare l'esistenza dell'immagine
+    const checkImageExists = (url: string) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+      });
     };
-    img.onerror = () => {
-      console.warn(`Failed to load image: ${src}. Using placeholder.`);
-      setImageSrc(placeholderSrc);
-      setImageLoaded(false);
+
+    const loadImage = async () => {
+      if (!src) {
+        setImageSrc(placeholderSrc);
+        return;
+      }
+
+      const imageExists = await checkImageExists(src);
+      if (imageExists) {
+        setImageSrc(src);
+        setImageLoaded(true);
+      } else {
+        console.warn(`Image not found: ${src}. Using placeholder.`);
+        setImageSrc(placeholderSrc);
+        setImageLoaded(false);
+      }
     };
+
+    loadImage();
   }, [src, placeholderSrc]);
 
   return (

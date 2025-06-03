@@ -19,7 +19,7 @@ import { motion } from 'framer-motion';
 const PageContainer = styled(Box)(({ theme }) => ({
   minHeight: '100vh',
   backgroundColor: '#FFF0F5',
-  backgroundImage: 'url("https://i.ibb.co/b5VB1Vz/saint-principino-001.jpg")',
+  backgroundImage: 'url("https://i.ibb.co/RGxyYDVV/saint-principino-001.jpg")',
   backgroundSize: '20px 20px',
   paddingTop: theme.spacing(12),
   paddingBottom: theme.spacing(8)
