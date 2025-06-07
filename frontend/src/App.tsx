@@ -15,8 +15,6 @@ const KawaiiContactPage = React.lazy(() => import('./pages/KawaiiContactPage'))
 const KawaiiFairyPage = React.lazy(() => import('./pages/KawaiiFairyPage'))
 const KawaiiFooter = React.lazy(() => import('./components/KawaiiFooter'))
 
-// Define API base URL
-const API_URL = 'http://localhost:3030/api';
 
 // Loader Component
 const PageLoader = () => (

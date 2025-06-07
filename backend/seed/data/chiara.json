@@ -1,15 +1,3 @@
-import express from 'express';
-import cors from 'cors';
-
-const app = express();
-// Utilizziamo la porta 3030 che dovrebbe essere libera
-const PORT = 3030;
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Mock Data
-
 // Dati di Chiara per il profilo kawaii
 const chiaraData = {
   profile: {
@@ -169,59 +157,3 @@ const fairyCollection = [
     "category": "fairies"
   }
 ];
-
-// API Routes
-app.get('/api/chiara/profile', (req, res) => {
-  res.json(chiaraData.profile);
-});
-
-app.get('/api/chiara/gallery', (req, res) => {
-  const { category } = req.query;
-
-  if (category && category !== 'all') {
-    const filteredGallery = chiaraData.gallery.filter(item => item.category === category);
-    res.json(filteredGallery);
-  } else {
-    res.json(chiaraData.gallery);
-  }
-});
-
-app.get('/api/chiara/commissions', (req, res) => {
-  res.json(chiaraData.commissions);
-});
-
-app.get('/api/chiara/testimonials', (req, res) => {
-  res.json(chiaraData.testimonials);
-});
-
-app.get('/api/chiara', (req, res) => {
-  res.json(chiaraData);
-});
-
-// New endpoint for fairy collection
-app.get('/api/fairies', (req, res) => {
-  res.json(fairyCollection);
-});
-
-// Get a specific fairy by ID
-app.get('/api/fairies/:id', (req, res) => {
-  const fairyId = parseInt(req.params.id);
-  const fairy = fairyCollection.find(f => f.id === fairyId);
-
-  if (fairy) {
-    res.json(fairy);
-  } else {
-    res.status(404).json({ message: "Fairy not found" });
-  }
-});
-
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'ok', message: 'Server is running properly' });
-});
-
-// Semplice avvio del server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
-

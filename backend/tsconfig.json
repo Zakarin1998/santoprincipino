@@ -8,6 +8,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "config", "controllers", "dao", "models", "seed", "types", "server.ts"],
   "exclude": ["node_modules"]
 }
